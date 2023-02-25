@@ -45,7 +45,7 @@
          customFooterPrefix: '输入自定义tapd前缀 :',
          footer: '输入对应id (可选) :\n',
          confirmCommit: '是否提交或修改commit ?',
-         generatingByAI: '正在生成你的 AI 提交信息...',
+         generatingByAI: '正在用AI生成你的提交信息...',
          generatedSelectByAI: '选择你认为合适的:',
        },
        types: [
