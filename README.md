@@ -169,6 +169,8 @@
 
 6. 配置 `husky` 钩子。
 
+   `husk install`
+
    在项目根目录中打开 `package.json` 文件，并添加以下内容：
 
    ```json
