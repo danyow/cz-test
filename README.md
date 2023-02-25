@@ -3,7 +3,7 @@
 1. 用命令行工具打开你的项目目录
 2. 使用以下命令安装必要的包：
     ```bash
-    npm install --save-dev @commitlint/cli @commitlint/config-conventional commitizen cz-git husky
+    npm install --save-dev @commitlint/cli @commitlint/config-conventional conventional-changelog commitizen cz-git husky
     ```
 3. 配置 `commitlint` 规则。
 
