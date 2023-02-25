@@ -160,7 +160,7 @@
 5. 配置 `cz-git` 以与 `commitizen` 一起使用。
 
    在项目根目录中创建一个 `.czrc` 文件，并添加以下内容：
-
+  
    ```json
    {
       "path": "cz-git"
