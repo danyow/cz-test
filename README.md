@@ -7,7 +7,7 @@
     ```
 3. 配置 `commitlint` 规则。
 
-    在项目根目录中创建一个名为 `.commitlintrc.js` 的文件，并添加以下内容：
+   在项目根目录中创建一个名为 `.commitlintrc.js` 的文件，并添加以下内容：
 
    ```js
    // .commitlintrc.js
@@ -152,42 +152,46 @@
    ```
 
 4. 运行以下命令初始化 `commitizen` 规范。
-   
+
    ```bash
    npx commitizen init cz-git --save-dev --save-exact
    ```
+
+5. 配置 `husky` 钩子。
+
+   先执行如下命令
+   ```bash
+   husky install   
+   ```
+
+   在项目路径`.husky`内创建 `commit-msg` 文件，并写入以下内容：
+
+   ```shell
+   #!/usr/bin/env sh
+   . "$(dirname -- "$0")/_/husky.sh"
    
-5. 配置 `cz-git` 以与 `commitizen` 一起使用。
-
-   在项目根目录中创建一个 `.czrc` 文件，并添加以下内容：
-  
-   ```json
-   {
-      "path": "cz-git"
-   }
+   npx --no -- commitlint --edit $1
    ```
 
-6. 配置 `husky` 钩子。
+6. 提交代码。
 
-   `husk install`
+   现在，可以使用 `git cz` 命令来提交代码。
 
-   在项目根目录中打开 `package.json` 文件，并添加以下内容：
+7. 配置 `cz-git` 以与 `open-ai` 一起使用。
+    1. 安装 `czg`
+       ```bash
+       npm install -g czg
+       ```
+    2. https://platform.openai.com/account/api-keys
+       登陆并创建你的 OpenAI API 密钥，通常以 sk- 开头
+       运行命令 `npx czg --openai-token=<API secret key>` 填入 OpenAI API 密钥完成设置
 
-   ```json
-   {
-      "husky": {
-         "hooks": {
-            "prepare-commit-msg": "exec < /dev/tty && node_modules/.bin/cz --hook || true",
-            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-         }
-      }
-   }
-   ```
+       ```bash
+       npx czg --openai-token=sk-xxxxx
+       ```
 
-7. 提交代码。
-
-   现在，开发者可以使用 `git commit` 命令来提交代码。
-
-   每次提交时，`husky` 将运行 `prepare-commit-msg` 钩子，并提示开发者填写规范化的提交信息。
-
-   提交完成后，`husky` 将运行 `commit-msg` 钩子，并验证提交消息是否符合 `commitlint` 规则。
+    3. 运行 `npx czg ai`
+        - 如需返回多个简短描述，并开启选择模式
+       ```bash
+       npx czg ai -N=5
+       ```
